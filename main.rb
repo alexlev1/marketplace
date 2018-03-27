@@ -1,7 +1,7 @@
-require_relative "lib/product"
-require_relative "lib/book"
-require_relative "lib/film"
-require_relative "lib/disk"
+require_relative "lib/goods/product"
+require_relative "lib/goods/book"
+require_relative "lib/goods/film"
+require_relative "lib/goods/disk"
 require_relative "lib/product_collection"
 require_relative "lib/cart"
 
