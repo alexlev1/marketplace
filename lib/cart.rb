@@ -11,4 +11,10 @@ class Cart
     @total_price += product.price
     product.amount -= 1
   end
+
+  def show_buy_list
+    show_buys = "\nВы купили:\n"
+    buy_list.each_with_index { |product, index| show_buys += "#{index += 1}. #{product}\n" }
+    show_buys += "\nС вас #{total_price} руб. Спасибо за покупки!"
+  end
 end

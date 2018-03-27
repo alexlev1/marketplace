@@ -12,19 +12,14 @@ collection.sort!(by: :price, order: :asc)
 cart = Cart.new # Создаём корзину покупателя
 
 loop do
-  puts "Что вы хотите купить:\n"
-  collection.to_a.each_with_index do |product, index|
-    puts "#{index += 1}. #{product}"
-  end
-
-  puts "0. Выход\n"
+  puts collection.show_products_list
 
   user_choice = STDIN.gets.to_i
 
   if user_choice.between?(1, collection.to_a.length)
-    product = collection.products[user_choice - 1]
+    product = collection.product_choice(user_choice)
     cart.add_to_cart(product)
-    collection.to_a.delete_at(user_choice - 1) if product.amount.zero?
+    collection.delete_product(user_choice, product)
     puts "\nВы выбрали: #{product}\n\n"
   elsif user_choice == 0
     break
@@ -33,9 +28,4 @@ loop do
   end
 end
 
-puts "\nВы купили:"
-cart.buy_list.each_with_index do |product, index|
-  puts "#{index += 1}. #{product}"
-end
-
-puts "\nС вас #{cart.total_price} руб. Спасибо за покупки!"
+puts cart.show_buy_list

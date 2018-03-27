@@ -57,6 +57,24 @@ class ProductCollection
     @products
   end
 
+  # Показать все товары из списка
+  def show_products_list
+    offer = "Что вы хотите купить:\n"
+    products.each_with_index { |product, index| offer += "#{index += 1}. #{product}\n" }
+    offer += "0. Выход\n\n"
+  end
+
+  # Выбираем товар из списка
+  def product_choice(user_choice)
+    products[user_choice - 1]
+  end
+
+  # Удаляем товар из списка, если он закончился
+  def delete_product(user_choice, product)
+    products.delete_at(user_choice - 1) if product.amount.zero?
+  end
+
+
   # Метод sort! меняет экземпляр класса ProductCollection (меняет порядок)
   # продуктов в коллекции, поэтому он назвал с восклицательным знаком. Этот
   # метод принимает на вход ассоциативный массив, в котором могут быть два
