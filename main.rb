@@ -15,14 +15,13 @@ loop do
   puts collection.show_products_list
 
   user_choice = STDIN.gets.to_i
+  break if user_choice == 0
 
   if user_choice.between?(1, collection.to_a.length)
     product = collection.product_choice(user_choice)
     cart.add_to_cart(product)
     collection.delete_product(user_choice, product)
     puts "\nВы выбрали: #{product}\n\n"
-  elsif user_choice == 0
-    break
   else
     puts "Такого товара нет!"
   end
